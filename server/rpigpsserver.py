@@ -1,5 +1,10 @@
+#!/usr/bin/python
+
+import os
 from BaseHTTPServer import HTTPServer 
 from CGIHTTPServer import CGIHTTPRequestHandler
+
+os.chdir('/home/pi/rpi/rpi-gps/server')
 
 handler = CGIHTTPRequestHandler
 handler.cgi_directories = ['/cgi-bin', '/htbin']  # this is the default
