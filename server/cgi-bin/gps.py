@@ -12,12 +12,22 @@ try:
 	#ser.write('sno, Stream1, COM1, +GSV+GLL, sec1'+'\r')
 	ser.write('enoc, COM1, +GSV+GLL'+'\r')
 	time.sleep(1)
-	out = ''
+	total = ''
 	while ser.inWaiting() > 0:
-		out += ser.readline()
+		out = ser.readline()
+		if "$GPGLL" in out:
+			gll = out
+		elif "$GPGSV" in out:
+			gsv = out
+		total += out
 		
-	if out != '':
-		print '<p>'+out+'</p>'
+	if total != '':
+		coord = gll.split(',')
+		sat = gsv.split(',')
+		print '<p>Latitude : '+coord[1]+','+coord[2]+'</p>'
+		print '<p>Longitude : '+coord[3]+','+coord[4]+'</p>'
+		print '<p>Number of satellites : '+sat[3]+'</p>'
+
 	else:
 		print '<p>Error</p>'
 				

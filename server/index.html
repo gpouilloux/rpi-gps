@@ -8,7 +8,7 @@
   </head>
     <body>
     <div>
-      <button id='start'>START</button>
+      <button id='refresh'>REFRESH</button>
       </div>
     <div id="map" style="width: 384px; height: 384px"></div>
     <div id="gps"></div>
@@ -40,19 +40,13 @@
 
 
       window.onload = function() {
-		  $("#start").click(function() {
+		  $("#refresh").click(function() {
 				jQuery.get('cgi-bin/gps.py', function(data) {
 					//do stuff with the data
 					$("#gps").html('');
 					$("#gps").append(data);
 				})
-			}); 
-		  
-       /* document.getElementById('start').onclick = function() {
-          // Will need to check here if GPS is connected or not...
-          document.getElementById('start').style.display = 'none';
-          animate();
-        } */
+			});
       }
       </script>
 
