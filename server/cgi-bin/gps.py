@@ -21,5 +21,5 @@ try:
 	else:
 		print '<p>Error</p>'
 				
-except serial.serialutil.SerialException:
-	print '<p>Error</p>'
+except serial.serialutil.SerialException, e:
+	print '<p>Error : '+str(e)+' </p>'
