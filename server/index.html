@@ -13,32 +13,6 @@
     <div id="map" style="width: 384px; height: 384px"></div>
     <div id="gps"></div>
       <script type="text/javascript">
-
-      function animate() {
-        var map = L.map('map', {
-        maxZoom: 10,
-        minZoom: 10,
-        crs: L.CRS.Simple
-      }).setView([0, 0], 10);
-
-      var southWest = map.unproject([0, 768], map.getMaxZoom());
-      var northEast = map.unproject([768, 0], map.getMaxZoom());
-      map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
-
-      L.tileLayer('http://192.168.2.1:8088/public/images/map-tiles/{z}/map_{x}_{y}.png', {
-        attribution: 'guiker@greeny',
-      }).addTo(map);
-
-      // pixel coordinates in large image
-      var m = {
-        x: 102, 
-        y: 404
-      }
-      var marker = L.marker(map.unproject([m.x, m.y], map.getMaxZoom())).addTo(map);
-      marker.bindPopup('<b>YOU ARE HERE!</b>').openPopup();
-    }
-
-
       window.onload = function() {
 		  $("#refresh").click(function() {
 				jQuery.get('cgi-bin/gps.py', function(data) {
